@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Blogging Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 text-center">
+    <h1 class="text-3xl font-bold">Simple Blogging Website</h1>
+  </header>
+
+  <!-- Blog Form -->
+  <section class="p-6 max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Create a New Blog Post</h2>
+    <form id="blogForm" class="bg-white shadow-md rounded p-4">
+      <div class="mb-4">
+        <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
+        <input type="text" id="title" placeholder="Enter blog title" class="w-full p-2 border rounded" required>
+      </div>
+      <div class="mb-4">
+        <label for="content" class="block text-gray-700 font-bold mb-2">Content</label>
+        <textarea id="content" placeholder="Enter blog content" class="w-full p-2 border rounded" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Blog Post</button>
+    </form>
+  </section>
+
+  <!-- Blog Posts Section -->
+  <section class="p-6 max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Blog Posts</h2>
+    <div id="blogPosts" class="space-y-4">
+      <!-- Blog posts will be added dynamically here -->
+    </div>
+  </section>
+
+  <script>
+    // JavaScript for adding blog posts dynamically
+    const blogForm = document.getElementById('blogForm');
+    const blogPosts = document.getElementById('blogPosts');
+
+    blogForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get form values
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      // Create a blog post card
+      const post = document.createElement('div');
+      post.className = 'bg-white shadow-md rounded p-4';
+      post.innerHTML = `
+        <h3 class="text-xl font-bold text-gray-800">${title}</h3>
+        <p class="text-gray-700 mt-2">${content}</p>
+      `;
+
+      // Append the blog post to the blogPosts section
+      blogPosts.appendChild(post);
+
+      // Reset the form
+      blogForm.reset();
+    });
+  </script>
+</body>
+</html>
